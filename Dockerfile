@@ -11,6 +11,9 @@ RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Copy custom nginx config
+COPY .docker/nginx/default.conf /etc/nginx/sites-enabled/default.conf
+
 # Environment configuration
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
