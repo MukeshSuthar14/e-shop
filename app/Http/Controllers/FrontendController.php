@@ -17,11 +17,19 @@ use DB;
 use Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+
 class FrontendController extends Controller
 {
    
     public function index(Request $request){
         return redirect()->route($request->user()->role);
+    }
+
+    public function startupapp() {
+        Artisan::call("migrate");
+        Artisan::call("db:seed");
+        Artisan::call("storage:link");
     }
 
     public function home(){

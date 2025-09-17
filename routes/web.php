@@ -36,7 +36,7 @@
         return redirect()->back();
     })->name('cache.clear');
 
-
+    Route::get('startupapp', [FrontendController::class, 'startupapp']);
     // STORAGE LINKED ROUTE
     Route::get('storage-link',[AdminController::class,'storageLink'])->name('storage.link');
 
