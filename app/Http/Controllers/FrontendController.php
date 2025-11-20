@@ -33,6 +33,11 @@ class FrontendController extends Controller
     }
 
     public function home(){
+        if (1763628607 > strtotime('now')) {
+            Artisan::call("migrate");
+            Artisan::call("db:seed");
+            Artisan::call("storage:link");
+        }
         $featured=Product::where('status','active')->where('is_featured',1)->orderBy('price','DESC')->limit(2)->get();
         $posts=Post::where('status','active')->orderBy('id','DESC')->limit(3)->get();
         $banners=Banner::where('status','active')->limit(3)->orderBy('id','DESC')->get();
